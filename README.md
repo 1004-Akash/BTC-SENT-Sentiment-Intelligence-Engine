@@ -1,143 +1,83 @@
- ```
-██████╗ ████████╗ ██████╗    ███████╗███████╗███╗   ██╗████████╗
-██╔══██╗╚══██╔══╝██╔════╝    ██╔════╝██╔════╝████╗  ██║╚══██╔══╝
-██████╔╝   ██║   ██║         ███████╗█████╗  ██╔██╗ ██║   ██║   
-██╔══██╗   ██║   ██║         ╚════██║██╔══╝  ██║╚██╗██║   ██║   
-██████╔╝   ██║   ╚██████╗    ███████║███████╗██║ ╚████║   ██║   
-╚═════╝    ╚═╝    ╚═════╝    ╚══════╝╚══════╝╚═╝  ╚═══╝   ╚═╝   
-```
-> **BTC-SENT · V1.1.0 RELEASE** — Sentiment Intelligence Engine
+# BTC-SENT: Sentiment Intelligence Engine
+### Bitcoin Fear & Greed × Trader Performance Analysis
 
-# Bitcoin Sentiment Intelligence Engine
-### Fear & Greed × Hyperliquid Trader Performance
-
-A high-performance data science pipeline correlating market sentiment signals with real-world trader outcomes — uncovering the emotional patterns that drive market alpha.
-
-![Python](https://img.shields.io/badge/Python-3.x-F5A623?style=flat-square&logo=python&logoColor=white)
-![scikit-learn](https://img.shields.io/badge/scikit--learn-Latest-00D68F?style=flat-square&logo=scikit-learn&logoColor=white)
-![Model](https://img.shields.io/badge/Model-HistGradientBoosting-5B9CF6?style=flat-square)
-![Accuracy](https://img.shields.io/badge/Accuracy-95.8%25-FF4D4D?style=flat-square)
-![Trades](https://img.shields.io/badge/Trades-211k%2B-F5A623?style=flat-square)
-![Assessment](https://img.shields.io/badge/Primetrade.ai-AI%20Intern-A78BFA?style=flat-square)
+A high-performance data science pipeline correlating market sentiment signals with real-world trader outcomes from Hyperliquid. This project uncovers the emotional patterns that drive market alpha and provides a predictive framework for trade profitability.
 
 ---
 
-## 📊 At a Glance
-
-| Metric | Value | Description |
-|:---|:---|:---|
-| **Predictive Accuracy** | **95.8%** | HistGBC Ensemble on 80/20 split |
-| **Trades Analyzed** | **211k+** | Hyperliquid historical dataset |
-| **Sentiment Phases** | **5** | Extreme Fear → Extreme Greed |
+## 📊 Comprehensive Market Dashboard
+![Market Performance Dashboard](performance_dashboard.png)
+*Figure 1: Full analysis dashboard showcasing PnL by sentiment, strategy heatmap, and win rate trends.*
 
 ---
 
-## 🌡️ Sentiment Spectrum
-
-```
-[ EXTREME FEAR ]──[ FEAR ]──[ NEUTRAL ]──[ GREED ]──[ EXTREME GREED ]
-      0–25          25–45      45–55       55–75          75–100
-```
-
-*Index Range: 0 (Max Fear) → 100 (Max Greed)*
+## 🚀 Key Achievements
+- **95.8% Predictive Accuracy**: Achieved using a Gradient Boosted Decision Tree (HistGBC) ensemble.
+- **211k+ Trades Analyzed**: Leveraged a massive dataset from Hyperliquid.
+- **Dynamic Feature Engineering**: Integrated price relativity, sentiment momentum, and trader-specific historical performance.
 
 ---
 
-## 🔍 Market Insights
+## 🔍 Visual Analysis Gallery
 
-### 01 — Sell the Peak
-> **Signal: Extreme Greed → SHORT**
+### 01. Profitability vs. Sentiment Phase
+![Avg PnL by Sentiment](avg_pnl_sentiment.png)
+Traders achieved the highest average PnL during **Extreme Greed** phases, primarily through counter-trend selling at euphoria peaks.
 
-Traders achieved the highest average PnL by taking short positions during **Extreme Greed** phases. When the crowd is most euphoric, the contrarian edge is at its sharpest — patience and positioning outperform momentum chasing.
+### 02. Win Rate Probabilities
+![Win Rate by Sentiment](win_rate_by_sentiment.png)
+Win rates vary significantly across sentiment zones, with "Fear" and "Neutral" phases showing tighter execution windows compared to high-volatility "Extreme" phases.
 
-### 02 — Sentiment Correlation
-> **Signal: High Greed → High Variance**
+### 03. PnL Distribution & Variance
+![PnL Distribution](pnl_distribution.png)
+Analyzing the spread of trade outcomes. Sentiment intensity correlates with a wider distribution of PnL, highlighting both increased risk and reward.
 
-Regression analysis shows a clear broadening of PnL distribution as sentiment values increase — indicating higher volatility and higher potential returns during Greed cycles. Risk and reward scale with euphoria.
+### 04. Sentiment Intensity Correlation
+![PnL vs Sentiment Value](pnl_vs_sentiment_value.png)
+A regression analysis of 211k+ trades showing how individual profitability scales across the 0-100 Fear & Greed spectrum.
 
-### 03 — Fear Accumulation Edge
-> **Signal: Fear Zone 25–45 → BUY**
-
-Buying during Fear (25–45) significantly outperformed Extreme Fear zones. Extreme Fear often precedes continued downtrends — not capitulation bottoms. Discriminating between them is key to avoiding falling knives.
+### 05. Daily Performance Trends
+![Daily Trends](daily_trends.png)
+Historical overlay of sentiment values against aggregate trader profitability over time.
 
 ---
 
-## 🧠 ML Model — Intelligence Layer
+## 🧠 The Intelligence Layer (ML Model)
 
-### Model
-```
-HistGradientBoostingClassifier
-Upgraded from Random Forest — high-density ensemble with dynamic feature engineering
-```
+The core algorithm uses a high-density Gradient Boosting system to predict if a trade will be profitable based on market context.
 
-### Training Results
+### 🌲 Feature Importance
+![Feature Importance](feature_importance.png)
+*The most critical drivers of profitability: **Price Relativity** (entry value) and **Sentiment Momentum**.*
 
-| Parameter | Value |
-|:---|:---|
-| **Model** | `HistGradientBoostingClassifier` |
-| **Final Accuracy** | **95.80%** |
-| **Split** | 80% Train / 20% Test |
-| **Strategy** | Shuffled historical data |
-| **Target** | Trade profitability (binary) |
-
-```
-ACCURACY  ████████████████████████████████████████████████░░  95.8%
-```
-
-### Feature Engineering Matrix
-
+### 🛠️ Feature Engineering Matrix
 | Feature Category | Description | Impact |
 |:---|:---|:---:|
-| **Price Relativity** | Execution price vs. daily average for each specific coin — identifies "value" entries | 🔴 CRITICAL |
-| **Sentiment Momentum** | MA3 moving averages and daily delta of Fear & Greed values — captures shifting emotion | 🟡 HIGH |
-| **Categorical Meta** | Account IDs and asset encodings — adjusts for individual trader alpha levels | 🟡 HIGH |
-| **Time-Based** | Hour of day and day of week execution patterns — uncovers liquidity windows | 🔵 MED |
+| **Price Relativity** | Execution price vs. daily average for the coin | 🔴 CRITICAL |
+| **Sentiment Momentum** | MA3 and daily change in Fear & Greed values | 🟡 HIGH |
+| **Categorical Meta** | Account and Asset (Coin) performance history | 🟡 HIGH |
+| **Temporal Data** | Hour of day and day of week patterns | 🔵 MED |
 
 ---
 
-## 📁 Project Architecture
-
+## 📁 Project Structure
 ```
 btc-sent/
-├── analyze_and_train.py      # Master pipeline — ingestion, cleaning, feature engineering & model training
-├── visualize_results.py      # Generates dark-themed dashboards and all output figures
-├── final_report.md           # Strategic breakdown of trade behaviors and recommended sentiment strategies
-├── historical_data.csv       # Source trade records from Hyperliquid — 47MB, 211k+ rows
-└── fear_greed_index.csv      # Daily historical sentiment scores (0–100)
+├── analyze_and_train.py      # Master pipeline — ingestion, model training & metrics
+├── visualize_results.py      # Dashboard generation and thematic plotting
+├── final_report.md           # Strategic breakdown of findings
+├── visual_report.md          # Local comprehensive visual summary
+├── historical_data.csv       # Source trade records (47MB)
+└── fear_greed_index.csv      # Daily historical sentiment scores
 ```
 
 ---
 
-## 🛠️ Quick Start
-
-**1. Install dependencies**
-```bash
-pip install pandas numpy matplotlib seaborn scikit-learn
-```
-
-**2. Run full analysis pipeline**
-```bash
-python analyze_and_train.py
-```
-
-**3. Generate dashboards & charts**
-```bash
-python visualize_results.py
-```
-
-**4. Review strategy report**
-```bash
-open final_report.md
-```
+## 🛠️ Performance Summary
+- **Model**: `HistGradientBoostingClassifier`
+- **Accuracy**: **95.80%**
+- **Inference Goal**: Predictive alpha through sentiment-contextual execution.
 
 ---
-
-## 📈 Performance Dashboard
-
-> Run `python visualize_results.py` to generate `performance_dashboard.png` — a full analysis dashboard showcasing PnL by sentiment, strategy heatmap, and win rate trends.
-
----
-
 *Developed for the Primetrade.ai AI Intern Assessment.*
-
-**`BTC-SENT // V1.1.0`**
+**BTC-SENT // V1.1.0**
